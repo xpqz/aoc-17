@@ -25,7 +25,7 @@ if __name__ == "__main__":
     d = read_data()
 
     count = 0
-    states = {tuple(d)}
+    states = {tuple(d): 0}
     while True:
         m, pivot = maxindex(d)
 
@@ -41,6 +41,7 @@ if __name__ == "__main__":
         if state in states:
             break
 
-        states.add(state)
+        states[state] = count
 
     print(count)
+    print(count - states[state])
