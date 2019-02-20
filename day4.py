@@ -19,9 +19,10 @@ if __name__ == "__main__":
     for l in data:
         try:
             for i, word1 in enumerate(l):
+                sword1 = sorted(word1)
                 for j, word2 in enumerate(l):
                     if i != j:
-                        if sorted(word1) == sorted(word2):
+                        if sword1 == sorted(word2):
                             raise PhraseInvalidException
         except PhraseInvalidException:
             continue
