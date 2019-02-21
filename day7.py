@@ -1,4 +1,4 @@
-from collections import Counter, deque, defaultdict
+from collections import deque, defaultdict
 from itertools import groupby
 
 import networkx as nx
