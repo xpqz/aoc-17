@@ -1,4 +1,5 @@
 from collections import defaultdict
+import math
 import re
 
 def read_data(filename="data/input8.data"):
@@ -14,6 +15,7 @@ if __name__ == "__main__":
 
     reg = defaultdict(int)
 
+    largest = -math.inf
     for line in lines:
         # eb inc -915 if wf != 0
         match = re.search(r'([a-z]+)\s+(inc|dec)\s+(-?\d+)\s+if\s+([a-z]+)\s+([><!=]+)\s+(-?\d+)', line)
@@ -32,5 +34,9 @@ if __name__ == "__main__":
             else:
                 reg[reg1] -= val1
 
+        if reg[reg1] > largest:
+            largest = reg[reg1]
+
     key = max(reg, key=reg.get)
     print(f"{key}: {reg[key]}")
+    print(largest)
