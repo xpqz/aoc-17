@@ -12,7 +12,8 @@ def build_graph(G, lines):
             G.add_edge(nodes[0], child)
 
 if __name__ == "__main__":
-    G = nx.DiGraph()
+    G = nx.Graph()
     build_graph(G, read_data())
 
     print(len(list(nx.descendants(G, 0))) + 1)  # add self
+    print(nx.number_connected_components(G))
