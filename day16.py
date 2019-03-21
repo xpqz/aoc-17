@@ -1,8 +1,5 @@
 import re
 
-class UnknownInstructionException(Exception):
-    pass
-
 def read_data(filename="data/input16.data"):
     with open(filename) as f:
         return f.read().split(",")
@@ -18,9 +15,6 @@ def exchange(state, p1, p2):
 def partner(state, name1, name2):
     return exchange(state, state.index(name1), state.index(name2))
 
-def is_sublist(a, b):
-    return [(i, i+len(b)) for i in range(len(a)) if a[i:i+len(b)] == b]
-
 def execute(state, instr):
     m = re.search(r'x(\d+)/(\d+)', i)
     if m:
@@ -31,10 +25,8 @@ def execute(state, instr):
         return spin(state, int(m.group(1)))
 
     m = re.search(r'p(.)/(.)', i)
-    if m:
-        return partner(state, m.group(1), m.group(2))
 
-    raise UnknownInstructionException
+    return partner(state, m.group(1), m.group(2))
 
 if __name__ == "__main__":
     instr = read_data()
