@@ -1,3 +1,5 @@
+import sys
+
 def read_data(filename="data/input23.data"):
     with open(filename) as f:
         return f.read().splitlines()
@@ -18,6 +20,7 @@ def parse_data(lines):
         code.append((op, arg1, arg2))
 
     return code, regs
+
 
 class Machine:
     def __init__(self, lines):
@@ -45,6 +48,7 @@ class Machine:
             v = arg2
         else:
             v = self.regs[arg2]
+
         self.ip += v
 
 
@@ -78,7 +82,5 @@ class Machine:
 
 if __name__ == "__main__":
     machine = Machine(read_data())
-
     machine.exec()
-
     print(machine.muls)
